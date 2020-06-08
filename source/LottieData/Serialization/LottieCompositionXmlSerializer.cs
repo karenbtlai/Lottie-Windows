@@ -553,12 +553,11 @@ namespace Microsoft.Toolkit.Uwp.UI.Lottie.LottieData.Serialization
             if (keyFrame is KeyFrame<Vector3>)
             {
                 var v3kf = (KeyFrame<Vector3>)(object)keyFrame;
-                var cp1 = v3kf.SpatialControlPoint1;
-                var cp2 = v3kf.SpatialControlPoint2;
-                if (cp1 != Vector3.Zero || cp2 != Vector3.Zero)
+                var sb = v3kf.SpatialBezier;
+                if (sb.HasValue)
                 {
                     // Spatial Bezier
-                    return $"SpatialBezier:{keyFrame.Value},{cp1},{cp2}@{keyFrame.Frame}({keyFrame.Easing.Type})";
+                    return $"SpatialBezier:{keyFrame.Value},{sb}@{keyFrame.Frame}({keyFrame.Easing.Type})";
                 }
             }
 
